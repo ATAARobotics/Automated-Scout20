@@ -1,0 +1,33 @@
+extends header
+
+block content
+    if event && teams && matches
+        h1 #{event.name} #{event.year}
+            a(href="https://www.thebluealliance.com/event/" + event.key style="padding-left:15px")
+                img(src="https://www.thebluealliance.com/images/logo_square_512.png" height="25px" width="25px" style="border-radius: 25px;")
+                a.btn.btn-info(href='/event/' + event.key + "/compare", role='button', style='margin-left: 15px') Compare Teams
+                a.btn.btn-info(href='/event/' + event.key + "/all", role='button', style='margin-left: 15px') All Data
+        .row
+            each team in teams
+                .col-xs-4.col-sm-3.col-md-2
+                    a(href="/team/" + team.key + "/event/" + event.key)
+                        p #{team.team_number} #{team.nickname}
+        h3 Predicted Rankings
+        if predictions
+            .row
+                each team, index in predictions.ranking_predictions
+                    .col-xs-4.col-sm-3.col-md-2
+                        a(href="/team/" + team[0] + "/event/" + event.key)
+                            p #{index + 1}. #{team[0].substr(3)}
+        else
+            p Predictions are unavailable
+        .row
+            .col
+                p <b>Bold is winner</b> Actual Score (TBA Prediction) [Scouting Prediction]
+        .row
+            include mixin
+            each match in matches
+                .col-xs-12.col-sm-6.col-md-4
+                    +score(event, match)
+    else
+        h3 Could not fetch from TBA and there is no cached version

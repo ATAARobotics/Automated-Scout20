@@ -1,32 +1,21 @@
 {
-  "name": "automated-scout20",
-  "version": "1.0.0",
-  "description": "Automated Scouting app for ATAA 2020",
+  "name": "automated-scout19",
+  "version": "0.1.0",
+  "description": "Automated scouting and data analysis for ATA team 4334",
   "main": "src/app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node ./src/app.js",
+    "start": "NODE_ENV=production node ./src/app.js",
     "dev": "nodemon ./src/app.js"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/ATAARobotics/Automated-Scout20.git"
-  },
-  "keywords": [
-    "yes"
-  ],
-  "author": "ATAA",
+  "author": "John Brandt",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/ATAARobotics/Automated-Scout20/issues"
-  },
-  "homepage": "https://github.com/ATAARobotics/Automated-Scout20#readme",
   "dependencies": {
-    "express": "^4.17.1",
+    "express": "^4.16.3",
+    "moment": "^2.24.0",
     "nano": "^8.0.0",
     "node-cache": "^4.2.0",
     "node-fetch": "^2.2.0",
     "nodemon": "^1.18.4",
-    "pug": "^2.0.4"
+    "pug": "^2.0.3"
   }
 }

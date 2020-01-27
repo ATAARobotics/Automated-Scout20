@@ -1,1 +1,26 @@
-h1 Hello World!
+extends header
+block content
+    #calendarEvents(style="display:none")= JSON.stringify(calendarEvents)
+    script.
+        $(function() {
+        // page is now ready, initialize the calendar...
+        var $records = $('#calendarEvents');
+        var events = JSON.parse($records.text());
+        $('#calendar').fullCalendar({
+            height: $( window ).height() - 135,
+            header: {
+                left: 'prev,next today',
+                center: 'title',
+                right: 'month,agendaWeek,listWeek'
+            },
+            eventLimit: true,
+            events: events
+        })
+        $( window ).resize(function() {
+            $('#calendar').fullCalendar('option', 'height', $( window ).height() - 115);
+        });
+        });
+    if calendarEvents[0]
+        #calendar(style="margin-top: 15px;")
+    else
+        h3 Could not fetch from TBA and there is no cached version

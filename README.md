@@ -1,2 +1,3 @@
-# Automated-Scout20
-ATAA's scouting data analysis program for the 2020 season FIRST Infinite Recharge
+# automated-scout19 #
+
+FRC team 4334's automated scout system.
