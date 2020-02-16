@@ -4,8 +4,8 @@ const fs = require("fs");
 
 const cache = new NodeCache();
 
-const TBA = 'https://www.thebluealliance.com/api/v3';
-const API_KEY = fs.readFileSync('TBA_API_KEY', "utf8");
+const TBA = 'https://frc-staging-api.firstinspires.org/v2.0/';
+const API_KEY = fs.readFileSync('FIRST_API_KEY', "utf8");
 
 module.exports = {
     get: async (path) => {

@@ -13,7 +13,7 @@ block content
                     a(href="/team/" + team.key + "/event/" + event.key)
                         p #{team.team_number} #{team.nickname}
         h3 Predicted Rankings
-        if predictions
+        if predictions && predictions.length > 0
             .row
                 each team, index in predictions.ranking_predictions
                     .col-xs-4.col-sm-3.col-md-2

@@ -60,23 +60,43 @@ window.onload = function () {
                 defaultContent: 0
             },
             {
-                data: "groundIntake",
-                title: "Ground Intake",
+                data: "cellIntake",
+                title: "Intake",
                 defaultContent: 0
             },
             {
-                data: "climbLevel",
+                data: "robotCapacity",
+                title: "Cell Storage",
+                defaultContent: 0
+            },
+            {
+                data: "climbType",
                 title: "Climb Level",
                 defaultContent: 0
             },
             {
-                data: "cargoLevel",
-                title: "Cargo Level",
+                data: "cellLowLevel",
+                title: "Low Scoring",
                 defaultContent: 0
             },
             {
-                data: "hatchLevel",
-                title: "Hatch Level",
+                data: "cellHighLevel",
+                title: "High Scoring",
+                defaultContent: 0
+            },
+            {
+                data: "cellInnerLevel",
+                title: "Inner Scoring",
+                defaultContent: 0
+            },
+            {
+                data: "robotWeight",
+                title: "Weight",
+                defaultContent: 0
+            },
+            {
+                data: "robotHeight",
+                title: "Height",
                 defaultContent: 0
             },
             {
@@ -126,194 +146,174 @@ window.onload = function () {
                 defaultContent: "No Name"
             },
             {
-                data: "startingLevel",
+                data: "startingLocation",
                 title: "Starting Level",
                 defaultContent: 0
             },
             {
-                data: "crossedBaseline",
-                title: "Baseline",
+                data: 'movedBaseline',
+                title: 'Moved Baseline',
                 defaultContent: 0
             },
             {
-                data: "sandstormHatches",
-                title: "Sandstorm Hatches",
+                data: 'autoCellsPickup',
+                title: 'Auto Cells Pickup',
                 defaultContent: 0
             },
             {
-                data: "sandstormCargo",
-                title: "Sandstorm Cargo",
+                data: 'autoCellsDropped',
+                title: 'Auto Cells Dropped',
                 defaultContent: 0
             },
             {
-                data: "teleopCargoshipCargo",
-                title: "Cargoship Cargo",
+                data: 'autoCellsLow',
+                title: 'Auto Cells Low',
                 defaultContent: 0
             },
             {
-                data: "teleopRocket1Cargo",
-                title: "Rocket 1 Cargo",
+                data: 'autoCellsHigh',
+                title: 'Auto Cells High',
                 defaultContent: 0
             },
             {
-                data: "teleopRocket2Cargo",
-                title: "Rocket 2 Cargo",
+                data: 'autoCellsInner',
+                title: 'Auto Cells Inner',
                 defaultContent: 0
             },
             {
-                data: "teleopRocket3Cargo",
-                title: "Rocket 3 Cargo",
+                data: 'autoCellsAssist',
+                title: 'Auto Cells Assist',
                 defaultContent: 0
             },
             {
-                data: "teleopDroppedCargo",
-                title: "Dropped Cargo",
+                data: 'autoCellSuccessPercent',
+                title: 'Auto Cell Accuracy',
                 defaultContent: 0
             },
             {
-                data: "teleopCargoshipHatch",
-                title: "Cargoship Hatch",
+                data: 'teleopCellsPickup',
+                title: 'Teleop Cells Pickup',
                 defaultContent: 0
             },
             {
-                data: "teleopRocket1Hatch",
-                title: "Rocket 1 Hatch",
+                data: 'teleopCellsDropped',
+                title: 'Teleop Cells Dropped',
                 defaultContent: 0
             },
             {
-                data: "teleopRocket2Hatch",
-                title: "Rocket 2 Hatch",
+                data: 'teleopCellsLow',
+                title: 'Teleop Cells Low',
                 defaultContent: 0
             },
             {
-                data: "teleopRocket3Hatch",
-                title: "Rocket 3 Hatch",
+                data: 'teleopCellsHigh',
+                title: 'Teleop Cells High',
                 defaultContent: 0
             },
             {
-                data: "teleopDroppedHatch",
-                title: "Dropped Hatch",
+                data: 'teleopCellsInner',
+                title: 'Teleop Cells Inner',
                 defaultContent: 0
             },
             {
-                data: "climbingType",
-                title: "Climb Level",
+                data: 'teleopCellsAssist',
+                title: 'Teleop Cells Assist',
                 defaultContent: 0
             },
             {
-                data: "climbingGaveAssistance",
-                title: "Gave Climbing Assistance",
+                data: 'cellAssistPercent',
+                title: 'Assist Frequency',
                 defaultContent: 0
             },
             {
-                data: "climbingGotAssistance",
-                title: "Got Climbing Assistance",
+                data: 'teleopCellSuccessPercent',
+                title: 'Teleop Accuracy',
                 defaultContent: 0
             },
             {
-                data: "speed",
-                title: "Speed",
+                data: 'totalCellSuccessPercent',
+                title: 'Cell Accuracy',
                 defaultContent: 0
             },
             {
-                data: "stability",
-                title: "Stability",
+                data: 'positionControl',
+                title: 'Position Control',
                 defaultContent: 0
             },
             {
-                data: "driverSkill",
-                title: "Driver Skill",
+                data: 'rotationControl',
+                title: 'Rotation Control',
                 defaultContent: 0
             },
             {
-                data: "defence",
-                title: "Defence",
+                data: 'selfClimb',
+                title: 'Climb',
                 defaultContent: 0
             },
             {
-                data: "anythingBreak",
-                title: "Broken",
+                data: 'climbBalance',
+                title: 'Balanced Climb',
                 defaultContent: 0
             },
             {
-                data: "dead",
-                title: "Dead",
+                data: 'selfPark',
+                title: 'Park',
                 defaultContent: 0
             },
             {
-                data: "totalCargo",
-                title: "Total Cargo",
+                data: 'speed',
+                title: 'Speed',
                 defaultContent: 0
             },
             {
-                data: "totalHatch",
-                title: "Total Hatch",
+                data: 'stability',
+                title: 'Stability',
                 defaultContent: 0
             },
             {
-                data: "averageCargoPickupTime",
-                title: "Cargo Pickup Time",
+                data: 'defense',
+                title: 'Defense',
                 defaultContent: 0
             },
             {
-                data: "averageCargoDropoffTime",
-                title: "Cargo Dropoff Time",
+                data: 'primaryDefense',
+                title: 'Primary Defense',
                 defaultContent: 0
             },
             {
-                data: "averageHatchPickupTime",
-                title: "Hatch Pickup Time",
+                data: 'anythingBreak',
+                title: 'Broken',
                 defaultContent: 0
             },
             {
-                data: "averageHatchDropoffTime",
-                title: "Hatch Dropoff Time",
+                data: 'dead',
+                title: 'Dead',
                 defaultContent: 0
             },
             {
-                data: "hatchCycleTime",
-                title: "Hatch Cycle Time",
+                data: 'pointsEarned',
+                title: 'Points Earned',
                 defaultContent: 0
             },
             {
-                data: "cargoCycleTime",
-                title: "Cargo Cycle Time",
-                defaultContent: 0
+                data: "autoComments",
+                title: "Auto Comments",
+                width: "500px"
             },
             {
-                data: "climbingDuration",
-                title: "Climb Time",
-                defaultContent: 0
+                data: "teleopComments",
+                title: "Teleop Comments",
+                width: "500px"
             },
             {
-                data: "cargoSuccessPercent",
-                title: "Cargo Success",
-                defaultContent: 0
+                data: "endgameComments",
+                title: "Endgame Comments",
+                width: "500px"
             },
             {
-                data: "hatchSuccessPercent",
-                title: "Hatch Success",
-                defaultContent: 0
-            },
-            {
-                data: "cargoEffectiveness",
-                title: "Cargo Effectiveness",
-                defaultContent: 0
-            },
-            {
-                data: "hatchEffectiveness",
-                title: "Hatch Effectiveness",
-                defaultContent: 0
-            },
-            {
-                data: "pointsEarned",
-                title: "Points Earned",
-                defaultContent: 0
-            },
-            {
-                width: "500px",
-                data: "comments",
-                title: "Comments",
+                data: "generalComments",
+                title: "General Comments",
+                width: "500px"
             }
         ]
     });
@@ -357,46 +357,5 @@ window.onload = function () {
                 }
             }
         })
-    })
-    var timeline;
-    $('#timeline-select').on('change', function (e) {
-        var match = matches.find(x => x._id == $('#timeline-select').val());
-        var timelineArray = [];
-        timelineArray.push({content: 'Sandstorm', type: 'background', start: moment('02:15.0', "mm:ss.S"), end: moment('02:30.0', "mm:ss.S")});
-        if (match.crossedBaselineTime) {
-            timelineArray.push({content: 'Crossed Baseline', title: match.crossedBaselineTime, start: moment(match.crossedBaselineTime, "mm:ss.S")});
-        }
-        for (var i = 0; i < match.teleopCargoTime.length; i++) {
-            timelineArray.push({content: `Cargo In ${match.teleopCargoTime[i][2]}`, title: `${match.teleopCargoTime[i][0]} - ${match.teleopCargoTime[i][1]}`, start: moment(match.teleopCargoTime[i][1], "mm:ss.S"), end: moment(match.teleopCargoTime[i][0], "mm:ss.S")})
-        }
-        for (var i = 0; i < match.teleopHatchTime.length; i++) {
-            timelineArray.push({content: `Hatch In ${match.teleopHatchTime[i][2]}`, title: `${match.teleopHatchTime[i][0]} - ${match.teleopHatchTime[i][1]}`, start: moment(match.teleopHatchTime[i][1], "mm:ss.S"), end: moment(match.teleopHatchTime[i][0], "mm:ss.S")})
-        }
-        if (match.climbingTime[0] && match.climbingTime[1]) {
-            timelineArray.push({content: 'Climbing', title: `${match.climbingTime[0]}-${match.climbingTime[1]}`, start: moment(match.climbingTime[1], "mm:ss.S"), end: moment(match.climbingTime[0], "mm:ss.S")})  
-        }
-        if (timeline) {
-            timeline.destroy();
-        }
-        var items = new vis.DataSet(timelineArray);
-        var container = document.getElementById('timeline');
-        timeline = new vis.Timeline(container, items, {
-            min: moment('00:00.0', "mm:ss.S"),
-            max: moment('02:30.0', "mm:ss.S"),
-            start: moment('00:55.0', "mm:ss.S"),
-            end: moment('02:30.0', "mm:ss.S"),
-            zoomMax: 95000,
-            showMajorLabels: false,
-            zoomMin: 9000,
-            timeAxis: {
-                scale: 'second',
-                step: 5
-            },
-            format: {
-                minorLabels: {
-                    second: 'mm:ss.S'
-                }
-            }
-        });    
     })
 }
