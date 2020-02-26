@@ -30,6 +30,7 @@ node_modules
 npm-debug.log
 
 API_KEY
+FRC_API_KEY
 DB_ADDRESS
 DB_USERNAME
 DB_PASSWORD
