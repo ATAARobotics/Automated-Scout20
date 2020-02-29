@@ -71,7 +71,7 @@ window.onload = function () {
             },
             {
                 data: "climbType",
-                title: "Climb Level",
+                title: "Climb",
                 defaultContent: 0
             },
             {
@@ -251,7 +251,7 @@ window.onload = function () {
                 defaultContent: 0
             },
             {
-                data: 'climbBalance',
+                data: 'climbBalanced',
                 title: 'Balanced Climb',
                 defaultContent: 0
             },
@@ -273,11 +273,6 @@ window.onload = function () {
             {
                 data: 'defense',
                 title: 'Defense',
-                defaultContent: 0
-            },
-            {
-                data: 'primaryDefense',
-                title: 'Primary Defense',
                 defaultContent: 0
             },
             {

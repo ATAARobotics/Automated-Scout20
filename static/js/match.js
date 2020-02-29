@@ -35,194 +35,174 @@ window.onload = function () {
                 defaultContent: "No Name"
             },
             {
-                data: "startingLevel",
+                data: "startingLocation",
                 title: "Starting Level",
                 defaultContent: 0
             },
             {
-                data: "crossedBaseline",
-                title: "Baseline",
+                data: 'movedBaseline',
+                title: 'Moved Baseline',
                 defaultContent: 0
             },
             {
-                data: "sandstormHatches",
-                title: "Sandstorm Hatches",
+                data: 'autoCellsPickup',
+                title: 'Auto Cells Pickup',
                 defaultContent: 0
             },
             {
-                data: "sandstormCargo",
-                title: "Sandstorm Cargo",
+                data: 'autoCellsDropped',
+                title: 'Auto Cells Dropped',
                 defaultContent: 0
             },
             {
-                data: "teleopCargoshipCargo",
-                title: "Cargoship Cargo",
+                data: 'autoCellsLow',
+                title: 'Auto Cells Low',
                 defaultContent: 0
             },
             {
-                data: "teleopRocket1Cargo",
-                title: "Rocket 1 Cargo",
+                data: 'autoCellsHigh',
+                title: 'Auto Cells High',
                 defaultContent: 0
             },
             {
-                data: "teleopRocket2Cargo",
-                title: "Rocket 2 Cargo",
+                data: 'autoCellsInner',
+                title: 'Auto Cells Inner',
                 defaultContent: 0
             },
             {
-                data: "teleopRocket3Cargo",
-                title: "Rocket 3 Cargo",
+                data: 'autoCellsAssist',
+                title: 'Auto Cells Assist',
                 defaultContent: 0
             },
             {
-                data: "teleopDroppedCargo",
-                title: "Dropped Cargo",
+                data: 'autoCellSuccessPercent',
+                title: 'Auto Cell Accuracy',
                 defaultContent: 0
             },
             {
-                data: "teleopCargoshipHatch",
-                title: "Cargoship Hatch",
+                data: 'teleopCellsPickup',
+                title: 'Teleop Cells Pickup',
                 defaultContent: 0
             },
             {
-                data: "teleopRocket1Hatch",
-                title: "Rocket 1 Hatch",
+                data: 'teleopCellsDropped',
+                title: 'Teleop Cells Dropped',
                 defaultContent: 0
             },
             {
-                data: "teleopRocket2Hatch",
-                title: "Rocket 2 Hatch",
+                data: 'teleopCellsLow',
+                title: 'Teleop Cells Low',
                 defaultContent: 0
             },
             {
-                data: "teleopRocket3Hatch",
-                title: "Rocket 3 Hatch",
+                data: 'teleopCellsHigh',
+                title: 'Teleop Cells High',
                 defaultContent: 0
             },
             {
-                data: "teleopDroppedHatch",
-                title: "Dropped Hatch",
+                data: 'teleopCellsInner',
+                title: 'Teleop Cells Inner',
                 defaultContent: 0
             },
             {
-                data: "climbingType",
-                title: "Climb Level",
+                data: 'teleopCellsAssist',
+                title: 'Teleop Cells Assist',
                 defaultContent: 0
             },
             {
-                data: "climbingGaveAssistance",
-                title: "Gave Climbing Assistance",
+                data: 'cellAssistPercent',
+                title: 'Assist Frequency',
                 defaultContent: 0
             },
             {
-                data: "climbingGotAssistance",
-                title: "Got Climbing Assistance",
+                data: 'teleopCellSuccessPercent',
+                title: 'Teleop Accuracy',
                 defaultContent: 0
             },
             {
-                data: "speed",
-                title: "Speed",
+                data: 'totalCellSuccessPercent',
+                title: 'Cell Accuracy',
                 defaultContent: 0
             },
             {
-                data: "stability",
-                title: "Stability",
+                data: 'positionControl',
+                title: 'Position Control',
                 defaultContent: 0
             },
             {
-                data: "driverSkill",
-                title: "Driver Skill",
+                data: 'rotationControl',
+                title: 'Rotation Control',
                 defaultContent: 0
             },
             {
-                data: "defence",
-                title: "Defence",
+                data: 'selfClimb',
+                title: 'Climb',
                 defaultContent: 0
             },
             {
-                data: "anythingBreak",
-                title: "Broken",
+                data: 'climbBalanced',
+                title: 'Balanced Climb',
                 defaultContent: 0
             },
             {
-                data: "dead",
-                title: "Dead",
+                data: 'selfPark',
+                title: 'Park',
                 defaultContent: 0
             },
             {
-                data: "totalCargo",
-                title: "Total Cargo",
+                data: 'speed',
+                title: 'Speed',
                 defaultContent: 0
             },
             {
-                data: "totalHatch",
-                title: "Total Hatch",
+                data: 'stability',
+                title: 'Stability',
                 defaultContent: 0
             },
             {
-                data: "averageCargoPickupTime",
-                title: "Cargo Pickup Time",
+                data: 'defense',
+                title: 'Defense',
                 defaultContent: 0
             },
             {
-                data: "averageCargoDropoffTime",
-                title: "Cargo Dropoff Time",
+                data: 'primaryDefense',
+                title: 'Primary Defense',
                 defaultContent: 0
             },
             {
-                data: "averageHatchPickupTime",
-                title: "Hatch Pickup Time",
+                data: 'anythingBreak',
+                title: 'Broken',
                 defaultContent: 0
             },
             {
-                data: "averageHatchDropoffTime",
-                title: "Hatch Dropoff Time",
+                data: 'dead',
+                title: 'Dead',
                 defaultContent: 0
             },
             {
-                data: "hatchCycleTime",
-                title: "Hatch Cycle Time",
+                data: 'pointsEarned',
+                title: 'Points Earned',
                 defaultContent: 0
             },
             {
-                data: "cargoCycleTime",
-                title: "Cargo Cycle Time",
-                defaultContent: 0
+                data: "autoComments",
+                title: "Auto Comments",
+                width: "500px"
             },
             {
-                data: "climbingDuration",
-                title: "Climb Time",
-                defaultContent: 0
+                data: "teleopComments",
+                title: "Teleop Comments",
+                width: "500px"
             },
             {
-                data: "cargoSuccessPercent",
-                title: "Cargo Success",
-                defaultContent: 0
+                data: "endgameComments",
+                title: "Endgame Comments",
+                width: "500px"
             },
             {
-                data: "hatchSuccessPercent",
-                title: "Hatch Success",
-                defaultContent: 0
-            },
-            {
-                data: "cargoEffectiveness",
-                title: "Cargo Effectiveness",
-                defaultContent: 0
-            },
-            {
-                data: "hatchEffectiveness",
-                title: "Hatch Effectiveness",
-                defaultContent: 0
-            },
-            {
-                data: "pointsEarned",
-                title: "Points Earned",
-                defaultContent: 0
-            },
-            {
-                width: "500px",
-                data: "comments",
-                title: "Comments",
+                data: "generalComments",
+                title: "General Comments",
+                width: "500px"
             }
         ]
     });
@@ -263,194 +243,174 @@ window.onload = function () {
                 defaultContent: "No Name"
             },
             {
-                data: "startingLevel",
+                data: "startingLocation",
                 title: "Starting Level",
                 defaultContent: 0
             },
             {
-                data: "crossedBaseline",
-                title: "Baseline",
+                data: 'movedBaseline',
+                title: 'Moved Baseline',
                 defaultContent: 0
             },
             {
-                data: "sandstormHatches",
-                title: "Sandstorm Hatches",
+                data: 'autoCellsPickup',
+                title: 'Auto Cells Pickup',
                 defaultContent: 0
             },
             {
-                data: "sandstormCargo",
-                title: "Sandstorm Cargo",
+                data: 'autoCellsDropped',
+                title: 'Auto Cells Dropped',
                 defaultContent: 0
             },
             {
-                data: "teleopCargoshipCargo",
-                title: "Cargoship Cargo",
+                data: 'autoCellsLow',
+                title: 'Auto Cells Low',
                 defaultContent: 0
             },
             {
-                data: "teleopRocket1Cargo",
-                title: "Rocket 1 Cargo",
+                data: 'autoCellsHigh',
+                title: 'Auto Cells High',
                 defaultContent: 0
             },
             {
-                data: "teleopRocket2Cargo",
-                title: "Rocket 2 Cargo",
+                data: 'autoCellsInner',
+                title: 'Auto Cells Inner',
                 defaultContent: 0
             },
             {
-                data: "teleopRocket3Cargo",
-                title: "Rocket 3 Cargo",
+                data: 'autoCellsAssist',
+                title: 'Auto Cells Assist',
                 defaultContent: 0
             },
             {
-                data: "teleopDroppedCargo",
-                title: "Dropped Cargo",
+                data: 'autoCellSuccessPercent',
+                title: 'Auto Cell Accuracy',
                 defaultContent: 0
             },
             {
-                data: "teleopCargoshipHatch",
-                title: "Cargoship Hatch",
+                data: 'teleopCellsPickup',
+                title: 'Teleop Cells Pickup',
                 defaultContent: 0
             },
             {
-                data: "teleopRocket1Hatch",
-                title: "Rocket 1 Hatch",
+                data: 'teleopCellsDropped',
+                title: 'Teleop Cells Dropped',
                 defaultContent: 0
             },
             {
-                data: "teleopRocket2Hatch",
-                title: "Rocket 2 Hatch",
+                data: 'teleopCellsLow',
+                title: 'Teleop Cells Low',
                 defaultContent: 0
             },
             {
-                data: "teleopRocket3Hatch",
-                title: "Rocket 3 Hatch",
+                data: 'teleopCellsHigh',
+                title: 'Teleop Cells High',
                 defaultContent: 0
             },
             {
-                data: "teleopDroppedHatch",
-                title: "Dropped Hatch",
+                data: 'teleopCellsInner',
+                title: 'Teleop Cells Inner',
                 defaultContent: 0
             },
             {
-                data: "climbingType",
-                title: "Climb Level",
+                data: 'teleopCellsAssist',
+                title: 'Teleop Cells Assist',
                 defaultContent: 0
             },
             {
-                data: "climbingGaveAssistance",
-                title: "Gave Climbing Assistance",
+                data: 'cellAssistPercent',
+                title: 'Assist Frequency',
                 defaultContent: 0
             },
             {
-                data: "climbingGotAssistance",
-                title: "Got Climbing Assistance",
+                data: 'teleopCellSuccessPercent',
+                title: 'Teleop Accuracy',
                 defaultContent: 0
             },
             {
-                data: "speed",
-                title: "Speed",
+                data: 'totalCellSuccessPercent',
+                title: 'Cell Accuracy',
                 defaultContent: 0
             },
             {
-                data: "stability",
-                title: "Stability",
+                data: 'positionControl',
+                title: 'Position Control',
                 defaultContent: 0
             },
             {
-                data: "driverSkill",
-                title: "Driver Skill",
+                data: 'rotationControl',
+                title: 'Rotation Control',
                 defaultContent: 0
             },
             {
-                data: "defence",
-                title: "Defence",
+                data: 'selfClimb',
+                title: 'Climb',
                 defaultContent: 0
             },
             {
-                data: "anythingBreak",
-                title: "Broken",
+                data: 'climbBalanced',
+                title: 'Balanced Climb',
                 defaultContent: 0
             },
             {
-                data: "dead",
-                title: "Dead",
+                data: 'selfPark',
+                title: 'Park',
                 defaultContent: 0
             },
             {
-                data: "totalCargo",
-                title: "Total Cargo",
+                data: 'speed',
+                title: 'Speed',
                 defaultContent: 0
             },
             {
-                data: "totalHatch",
-                title: "Total Hatch",
+                data: 'stability',
+                title: 'Stability',
                 defaultContent: 0
             },
             {
-                data: "averageCargoPickupTime",
-                title: "Cargo Pickup Time",
+                data: 'defense',
+                title: 'Defense',
                 defaultContent: 0
             },
             {
-                data: "averageCargoDropoffTime",
-                title: "Cargo Dropoff Time",
+                data: 'primaryDefense',
+                title: 'Primary Defense',
                 defaultContent: 0
             },
             {
-                data: "averageHatchPickupTime",
-                title: "Hatch Pickup Time",
+                data: 'anythingBreak',
+                title: 'Broken',
                 defaultContent: 0
             },
             {
-                data: "averageHatchDropoffTime",
-                title: "Hatch Dropoff Time",
+                data: 'dead',
+                title: 'Dead',
                 defaultContent: 0
             },
             {
-                data: "hatchCycleTime",
-                title: "Hatch Cycle Time",
+                data: 'pointsEarned',
+                title: 'Points Earned',
                 defaultContent: 0
             },
             {
-                data: "cargoCycleTime",
-                title: "Cargo Cycle Time",
-                defaultContent: 0
+                data: "autoComments",
+                title: "Auto Comments",
+                width: "500px"
             },
             {
-                data: "climbingDuration",
-                title: "Climb Time",
-                defaultContent: 0
+                data: "teleopComments",
+                title: "Teleop Comments",
+                width: "500px"
             },
             {
-                data: "cargoSuccessPercent",
-                title: "Cargo Success",
-                defaultContent: 0
+                data: "endgameComments",
+                title: "Endgame Comments",
+                width: "500px"
             },
             {
-                data: "hatchSuccessPercent",
-                title: "Hatch Success",
-                defaultContent: 0
-            },
-            {
-                data: "cargoEffectiveness",
-                title: "Cargo Effectiveness",
-                defaultContent: 0
-            },
-            {
-                data: "hatchEffectiveness",
-                title: "Hatch Effectiveness",
-                defaultContent: 0
-            },
-            {
-                data: "pointsEarned",
-                title: "Points Earned",
-                defaultContent: 0
-            },
-            {
-                width: "500px",
-                data: "comments",
-                title: "Comments",
+                data: "generalComments",
+                title: "General Comments",
+                width: "500px"
             }
         ]
     });

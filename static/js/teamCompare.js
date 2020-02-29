@@ -152,6 +152,11 @@ window.onload = function() {
                 defaultContent: 0
             },
             {
+                data: 'defenseNA',
+                title: 'Defense NA',
+                defaultContent: 0
+            },
+            {
                 data: 'primaryDefense',
                 title: 'Primary Defense',
                 defaultContent: 0
