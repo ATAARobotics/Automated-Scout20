@@ -162,7 +162,7 @@ async function getTeamAverage (dbName, teamNumber, matchType) {
         var pointsEarned = 0;
         var defenseNA = 0;
         for (i = 0; i < matches.length; i++) {
-            var climbBalance = matches[i].selfClimb * matches[i].balanced;
+            var climbBalancedMatch = matches[i].selfClimb * matches[i].balanced;
             movedBaseline += matches[i].movedBaseline;
             autoCellsPickup += matches[i].autoCellsPickup;
             autoCellsDropped += matches[i].autoCellsDropped;
@@ -180,7 +180,7 @@ async function getTeamAverage (dbName, teamNumber, matchType) {
             positionControl += matches[i].positionControl;
             selfClimb += matches[i].selfClimb;
             selfPark += matches[i].selfPark;
-            climbBalance += climbBalance;
+            climbBalanced += climbBalancedMatch;
             speed += matches[i].speed;
             stability += matches[i].stability;
             if (matches[i].defense != 0) {
@@ -220,11 +220,12 @@ async function getTeamAverage (dbName, teamNumber, matchType) {
             positionControl: +((positionControl / matches.length) * 100).toFixed(2) || 0,
             selfClimb: +((selfClimb / matches.length) * 100).toFixed(2) || 0,
             selfPark: +((selfPark / matches.length) * 100).toFixed(2) || 0,
-            climbBalance: +((climbBalance / matches.length) * 100).toFixed(2) || 0,
+            climbBalanced: +((climbBalanced / matches.length) * 100).toFixed(2) || 0,
             speed: +(speed / matches.length).toFixed(2) || 0,
             stability: +(stability / matches.length).toFixed(2) || 0,
             defense: +(defense / matches.length).toFixed(2) || 0,
             primaryDefense: +((primaryDefense / (matches.length - defenseNA)) * 100).toFixed(2) || 0,
+            defenseNA: +((defenseNA / matches.length) * 100).toFixed(2) || 0,
             anythingBreak: +((anythingBreak / matches.length) * 100).toFixed(2) || 0,
             dead: +((dead / matches.length) * 100).toFixed(2) || 0,
             totalCellsLow: +(totalCellsLow / matches.length).toFixed(2) || 0,
