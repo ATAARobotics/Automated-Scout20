@@ -142,6 +142,8 @@ async function getTeamAverage (dbName, teamNumber, matchType) {
         var teleopCellsAssist = 0;
         var rotationControl = 0;
         var positionControl = 0;
+        var yellowPenaltyCard = 0;
+        var redPenaltyCard = 0;
         var selfClimb = 0;
         var selfPark = 0;
         var climbBalanced = 0;
@@ -178,6 +180,11 @@ async function getTeamAverage (dbName, teamNumber, matchType) {
             teleopCellsAssist += matches[i].teleopCellsAssist;
             rotationControl += matches[i].rotationControl;
             positionControl += matches[i].positionControl;
+            if (matches[i].penaltyCard == 1) {
+                yellowPenaltyCard++;
+            } else if (penaltyCard == 2) {
+                redPenaltyCard++;
+            }
             selfClimb += matches[i].selfClimb;
             selfPark += matches[i].selfPark;
             climbBalanced += climbBalancedMatch;
@@ -218,6 +225,8 @@ async function getTeamAverage (dbName, teamNumber, matchType) {
             teleopCellsAssist: +(teleopCellsAssist / matches.length).toFixed(2) || 0,
             rotationControl: +((rotationControl / matches.length) * 100).toFixed(2) || 0,
             positionControl: +((positionControl / matches.length) * 100).toFixed(2) || 0,
+            yellowPenaltyCard: +(yellowPenaltyCard).toFixed(2) || 0,
+            redPenaltyCard: +(redPenaltyCard).toFixed(2) || 0,
             selfClimb: +((selfClimb / matches.length) * 100).toFixed(2) || 0,
             selfPark: +((selfPark / matches.length) * 100).toFixed(2) || 0,
             climbBalanced: +((climbBalanced / matches.length) * 100).toFixed(2) || 0,

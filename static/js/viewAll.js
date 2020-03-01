@@ -133,6 +133,16 @@ window.onload = function () {
                 defaultContent: 0
             },
             {
+                data: 'yellowPenaltyCard',
+                title: 'Yellow Cards',
+                defaultContent: 0
+            },
+            {
+                data: 'redPenaltyCard',
+                title: 'Red Cards',
+                defaultContent: 0
+            },
+            {
                 data: 'selfClimb',
                 title: 'Climb',
                 defaultContent: 0

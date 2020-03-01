@@ -29,8 +29,8 @@ node_modules
 # Debug log from npm
 npm-debug.log
 
-API_KEY
-FRC_API_KEY
+TBA_API_KEY
+FIRST_API_KEY
 DB_ADDRESS
 DB_USERNAME
 DB_PASSWORD
