@@ -1,0 +1,18 @@
+{
+  "compilerOptions": {
+    "declaration": true,
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "noImplicitAny": true,
+    "target": "es2019",
+    "outDir": "client/dist",
+    "removeComments": true,
+    "sourceMap": true,
+    "strict": true,
+    "jsx": "react"
+  },
+  "exclude": [
+    "client/dist",
+    "node_modules"
+  ]
+}

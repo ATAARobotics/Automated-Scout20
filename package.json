@@ -1,21 +1,157 @@
 {
-  "name": "automated-scout19",
-  "version": "0.1.0",
-  "description": "Automated scouting and data analysis for ATA team 4334",
-  "main": "src/app.js",
+  "name": "automated-scout",
+  "version": "0.22.0",
+  "description": "",
+  "main": "",
   "scripts": {
-    "start": "NODE_ENV=production node ./src/app.js",
-    "dev": "nodemon ./src/app.js"
+    "build": "esbuild --bundle --outdir=client/dist client/source/main.tsx",
+    "start": "esbuild --bundle --watch --sourcemap --outdir=client/dist client/source/main.tsx",
+    "lint": "tsc --noEmit --pretty && eslint client/source/*.{ts,tsx}"
   },
-  "author": "John Brandt",
-  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ATAARobotics/Automated-Scout20"
+  },
+  "author": "ATAA",
+  "license": "All Rights Reserved",
   "dependencies": {
-    "express": "^4.16.3",
-    "moment": "^2.24.0",
-    "nano": "^8.0.0",
-    "node-cache": "^4.2.0",
-    "node-fetch": "^2.2.0",
-    "nodemon": "^1.18.4",
-    "pug": "^2.0.3"
+    "@types/react": "^17.0.11",
+    "@types/react-dom": "^17.0.8",
+    "@types/react-router-dom": "^5.1.8",
+    "@typescript-eslint/eslint-plugin": "^4.28.5",
+    "esbuild": "^0.12.16",
+    "eslint": "^7.31.0",
+    "eslint-plugin-jsdoc": "^36.0.7",
+    "eslint-plugin-react": "^7.25.1",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "react-router-dom": "^5.3.0",
+    "typescript": "^4.3.5"
+  },
+  "eslintConfig": {
+    "parser": "@typescript-eslint/parser",
+    "overrides": [
+      {
+        "files": [
+          "*.ts",
+          "*.tsx"
+        ],
+        "parserOptions": {
+          "project": "tsconfig.json",
+          "ecmaVersion": 2020,
+          "sourceType": "module"
+        }
+      }
+    ],
+    "settings": {
+      "ecmascript": 7
+    },
+    "env": {
+      "browser": true
+    },
+    "plugins": [
+      "@typescript-eslint",
+      "eslint-plugin-jsdoc",
+      "react"
+    ],
+    "parserOptions": {
+      "sourceType": "module",
+      "ecmaVersion": 2021,
+      "ecmaFeatures": {
+        "jsx": true
+      }
+    },
+    "rules": {
+      "quotes": [
+        "warn",
+        "double"
+      ],
+      "comma-style": [
+        "warn",
+        "last"
+      ],
+      "brace-style": [
+        "warn",
+        "1tbs"
+      ],
+      "func-call-spacing": [
+        "warn",
+        "never"
+      ],
+      "comma-dangle": [
+        "warn",
+        "always-multiline"
+      ],
+      "comma-spacing": [
+        "warn",
+        {
+          "before": false,
+          "after": true
+        }
+      ],
+      "spaced-comment": [
+        "warn",
+        "always",
+        {
+          "markers": [
+            "/"
+          ]
+        }
+      ],
+      "semi-spacing": [
+        "warn",
+        {
+          "before": false,
+          "after": true
+        }
+      ],
+      "multiline-comment-style": [
+        "warn",
+        "separate-lines"
+      ],
+      "no-label-var": "warn",
+      "no-useless-rename": "warn",
+      "new-cap": "warn",
+      "camelcase": [
+        "warn",
+        {
+          "ignoreImports": true
+        }
+      ],
+      "no-unused-vars": "off",
+      "react/jsx-uses-vars": "warn",
+      "object-property-newline": "off",
+      "eqeqeq": [
+        "error",
+        "always"
+      ],
+      "semi": [
+        "error",
+        "always"
+      ],
+      "no-var": "error",
+      "strict": [
+        "error",
+        "global"
+      ],
+      "no-confusing-arrow": "error",
+      "no-shadow": [
+        "error",
+        {
+          "builtinGlobals": true,
+          "hoist": "all",
+          "allow": []
+        }
+      ],
+      "@typescript-eslint/strict-boolean-expressions": "error",
+      "@typescript-eslint/no-empty-function": "off",
+      "jsdoc/require-param-type": "off",
+      "jsdoc/require-returns-type": "off"
+    },
+    "extends": [
+      "eslint:recommended",
+      "plugin:@typescript-eslint/recommended",
+      "plugin:jsdoc/recommended"
+    ]
   }
 }
