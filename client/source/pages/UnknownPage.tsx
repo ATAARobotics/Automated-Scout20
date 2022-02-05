@@ -4,7 +4,7 @@ import { Link, RouteComponentProps } from 'react-router-dom';
 import TitleIcon from "../components/TitleIcon";
 
 /**
- * Server overview page.
+ * Page not found page.
  *
  * @returns The page as a react component.
  */

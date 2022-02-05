@@ -7,5 +7,5 @@ async fn main() {
 
 	let routes = warp::get().and(dist.or(assets));
 
-	warp::serve(routes).run(([0, 0, 0, 0], 9060)).await;
+	warp::serve(routes).run(([0, 0, 0, 0], 4421)).await;
 }
