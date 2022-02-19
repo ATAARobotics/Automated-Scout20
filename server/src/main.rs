@@ -1,75 +1,29 @@
+mod data;
+mod database;
+
+use crate::data::MatchInfo;
+use crate::database::Database;
 use actix_web::http::header::ContentType;
 use actix_web::http::{header, StatusCode};
 use actix_web::web::Data;
-use actix_web::{options, put, web, App, HttpResponse, HttpServer};
+use actix_web::{get, options, put, web, App, HttpResponse, HttpServer};
 use futures_util::stream::StreamExt as _;
-use serde::Deserialize;
 use simplelog::TermLogger;
+use std::path::PathBuf;
+use std::str::FromStr;
+use std::sync::Arc;
 
-#[derive(Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
-enum MatchType {
-	Qualification,
-	Practice,
-}
-
-#[derive(Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
-enum StartingLocation {
-	Left,
-	Middle,
-	Right,
-}
-
-#[derive(Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
-struct Auto {
-	exited_tarmac: bool,
-	starting_location: Option<StartingLocation>,
-	cells_acquired: u32,
-	cells_dropped: u32,
-	low_goal_shots: u32,
-	high_goal_shots: u32,
-}
-
-#[derive(Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
-struct Teleop {
-	cells_acquired: u32,
-	cells_dropped: u32,
-	low_goal_shots: u32,
-	high_goal_shots: u32,
-}
-
-#[derive(Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
-struct Climb {
-	highest_attempted: u32,
-	highest_scored: u32,
-	fell: bool,
-}
-
-#[derive(Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
-struct MatchInfo {
-	#[serde(rename = "match")]
-	match_number: u32,
-	match_category: Option<MatchType>,
-	team: Option<u32>,
-	auto: Auto,
-	teleop: Teleop,
-	climb: Climb,
-	speed: Option<f32>,
-	stability: Option<f32>,
-	defense: Option<f32>,
-	is_primary_defence: Option<bool>,
-	was_broken: Option<bool>,
-	was_disabled: Option<bool>,
-	notes: Option<String>,
+#[options("/api/push")]
+async fn push_options(_params: ()) -> HttpResponse {
+	HttpResponse::build(StatusCode::OK)
+		.append_header((header::ACCESS_CONTROL_ALLOW_ORIGIN, "*"))
+		.append_header((header::ACCESS_CONTROL_ALLOW_METHODS, "PUT"))
+		.append_header((header::ACCESS_CONTROL_ALLOW_HEADERS, "Content-Type"))
+		.body("")
 }
 
 #[put("/api/push")]
-async fn push_data(mut body: web::Payload) -> HttpResponse {
+async fn push_data(data: Data<Arc<Database>>, mut body: web::Payload) -> HttpResponse {
 	// FIXME: for some reason web::Json isn't working.
 	let mut bytes = web::BytesMut::new();
 	while let Some(item) = body.next().await {
@@ -78,21 +32,36 @@ async fn push_data(mut body: web::Payload) -> HttpResponse {
 	let string = String::from_utf8(bytes.to_vec()).unwrap();
 	let json: Vec<MatchInfo> = serde_json::from_str(&string).unwrap();
 	println!("Got some info: {:?}", json);
+	for match_info in json {
+		data.write_match(&match_info).unwrap();
+	}
 
 	HttpResponse::build(StatusCode::OK)
 		.content_type(ContentType::json())
 		.append_header((header::ACCESS_CONTROL_ALLOW_ORIGIN, "*"))
-		.append_header(("X-My-Awesome-Header", "123"))
 		.body(r#"{"success": true}"#)
 }
 
-#[options("/api/push")]
-async fn push_options(data: Data<()>, params: ()) -> HttpResponse {
+#[get("/api/pull")]
+async fn pull_data(data: Data<Arc<Database>>) -> HttpResponse {
+	let matches: Vec<MatchInfo> = data.get_all_matches().map(|data| data.unwrap()).collect();
+	let json = serde_json::to_string(&matches).unwrap();
 	HttpResponse::build(StatusCode::OK)
+		.content_type(ContentType::json())
 		.append_header((header::ACCESS_CONTROL_ALLOW_ORIGIN, "*"))
-		.append_header((header::ACCESS_CONTROL_ALLOW_METHODS, "PUT"))
-		.append_header((header::ACCESS_CONTROL_ALLOW_HEADERS, "Content-Type"))
-		.body("")
+		.body(format!("{{\"success\": true, \"data\": {}}}", json))
+}
+
+#[get("/api/csv")]
+async fn get_csv(data: Data<Arc<Database>>) -> HttpResponse {
+	let mut csv = MatchInfo::HEADER.to_string();
+	for match_info in data.get_all_matches() {
+		csv.push_str(&match_info.unwrap().write_csv_line());
+	}
+	HttpResponse::build(StatusCode::OK)
+		.content_type(ContentType::plaintext())
+		.append_header((header::ACCESS_CONTROL_ALLOW_ORIGIN, "*"))
+		.body(csv)
 }
 
 #[tokio::main]
@@ -107,11 +76,15 @@ async fn main() {
 		simplelog::ColorChoice::Always,
 	)
 	.unwrap();
+	let database = Arc::new(Database::open(&PathBuf::from_str("database").unwrap()));
 	HttpServer::new(move || {
+		let database = database.clone();
 		App::new()
-			.app_data(Data::new(()))
+			.app_data(Data::new(database))
 			.service(push_data)
 			.service(push_options)
+			.service(pull_data)
+			.service(get_csv)
 	})
 	.bind("0.0.0.0:4421")
 	.unwrap()
