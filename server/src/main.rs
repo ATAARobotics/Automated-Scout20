@@ -1,17 +1,21 @@
+mod analysis;
 mod data;
 mod database;
 
-use crate::data::MatchInfo;
-use crate::database::Database;
-use actix_web::http::header::ContentType;
-use actix_web::http::{header, StatusCode};
-use actix_web::web::Data;
-use actix_web::{get, options, put, web, App, HttpResponse, HttpServer};
-use futures_util::stream::StreamExt as _;
-use simplelog::TermLogger;
 use std::path::PathBuf;
 use std::str::FromStr;
 use std::sync::Arc;
+
+use actix_files::{Files, NamedFile};
+use actix_web::http::header::ContentType;
+use actix_web::http::{header, StatusCode};
+use actix_web::web::Data;
+use actix_web::{get, options, put, web, App, HttpRequest, HttpResponse, HttpServer, Responder};
+use futures_util::stream::StreamExt as _;
+use simplelog::TermLogger;
+
+use crate::data::MatchInfo;
+use crate::database::Database;
 
 #[options("/api/push")]
 async fn push_options(_params: ()) -> HttpResponse {
@@ -31,7 +35,6 @@ async fn push_data(data: Data<Arc<Database>>, mut body: web::Payload) -> HttpRes
 	}
 	let string = String::from_utf8(bytes.to_vec()).unwrap();
 	let json: Vec<MatchInfo> = serde_json::from_str(&string).unwrap();
-	println!("Got some info: {:?}", json);
 	for match_info in json {
 		data.write_match(&match_info).unwrap();
 	}
@@ -52,6 +55,16 @@ async fn pull_data(data: Data<Arc<Database>>) -> HttpResponse {
 		.body(format!("{{\"success\": true, \"data\": {}}}", json))
 }
 
+#[get("/api/analysis")]
+async fn get_analysis(data: Data<Arc<Database>>) -> HttpResponse {
+	let teams = analysis::analyze_data(&data);
+	let json = serde_json::to_string(&teams).unwrap();
+	HttpResponse::build(StatusCode::OK)
+		.content_type(ContentType::json())
+		.append_header((header::ACCESS_CONTROL_ALLOW_ORIGIN, "*"))
+		.body(format!("{{\"success\": true, \"data\": {}}}", json))
+}
+
 #[get("/api/csv")]
 async fn get_csv(data: Data<Arc<Database>>) -> HttpResponse {
 	let mut csv = MatchInfo::HEADER.to_string();
@@ -62,6 +75,10 @@ async fn get_csv(data: Data<Arc<Database>>) -> HttpResponse {
 		.content_type(ContentType::plaintext())
 		.append_header((header::ACCESS_CONTROL_ALLOW_ORIGIN, "*"))
 		.body(csv)
+}
+
+async fn get_index(_req: HttpRequest) -> impl Responder {
+	NamedFile::open_async("../client/assets/index.html").await
 }
 
 #[tokio::main]
@@ -85,6 +102,14 @@ async fn main() {
 			.service(push_options)
 			.service(pull_data)
 			.service(get_csv)
+			.service(get_analysis)
+			.service(Files::new("/dist", "../client/dist/").prefer_utf8(true))
+			.service(
+				Files::new("/", "../client/assets/")
+					.prefer_utf8(true)
+					.index_file("index.html"),
+			)
+			.default_service(web::route().to(get_index))
 	})
 	.bind("0.0.0.0:4421")
 	.unwrap()

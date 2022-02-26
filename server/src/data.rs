@@ -8,6 +8,12 @@ pub enum MatchType {
 	Practice,
 }
 
+impl Default for MatchType {
+	fn default() -> Self {
+		MatchType::Practice
+	}
+}
+
 impl Display for MatchType {
 	fn fmt(&self, f: &mut Formatter<'_>) -> std::fmt::Result {
 		match self {
@@ -25,6 +31,12 @@ pub enum StartingLocation {
 	Right,
 }
 
+impl Default for StartingLocation {
+	fn default() -> Self {
+		StartingLocation::Middle
+	}
+}
+
 impl Display for StartingLocation {
 	fn fmt(&self, f: &mut Formatter<'_>) -> std::fmt::Result {
 		match self {
@@ -35,8 +47,9 @@ impl Display for StartingLocation {
 	}
 }
 
-#[derive(Debug, Clone, Deserialize, Serialize)]
+#[derive(Debug, Clone, Default, Deserialize, Serialize)]
 #[serde(rename_all = "camelCase")]
+#[serde(default)]
 pub struct Auto {
 	pub exited_tarmac: bool,
 	pub starting_location: Option<StartingLocation>,
@@ -46,8 +59,9 @@ pub struct Auto {
 	pub high_goal_shots: u32,
 }
 
-#[derive(Debug, Clone, Deserialize, Serialize)]
+#[derive(Debug, Clone, Default, Deserialize, Serialize)]
 #[serde(rename_all = "camelCase")]
+#[serde(default)]
 pub struct Teleop {
 	pub cells_acquired: u32,
 	pub cells_dropped: u32,
@@ -55,31 +69,36 @@ pub struct Teleop {
 	pub high_goal_shots: u32,
 }
 
-#[derive(Debug, Clone, Deserialize, Serialize)]
+#[derive(Debug, Clone, Default, Deserialize, Serialize)]
 #[serde(rename_all = "camelCase")]
+#[serde(default)]
 pub struct Climb {
 	pub highest_attempted: u32,
 	pub highest_scored: u32,
 	pub fell: bool,
+	pub started_before_endgame: bool,
 }
 
-#[derive(Debug, Clone, Deserialize, Serialize)]
+#[derive(Debug, Clone, Default, Deserialize, Serialize)]
 #[serde(rename_all = "camelCase")]
+#[serde(default)]
 pub struct MatchInfo {
 	#[serde(rename = "match")]
 	pub match_number: u32,
 	pub match_category: MatchType,
-	pub team: Option<u32>,
+	#[serde(rename = "team")]
+	pub team_number: u32,
 	pub auto: Auto,
 	pub teleop: Teleop,
 	pub climb: Climb,
 	pub speed: Option<f32>,
 	pub stability: Option<f32>,
 	pub defense: Option<f32>,
-	pub is_primary_defence: Option<bool>,
-	pub was_broken: Option<bool>,
-	pub was_disabled: Option<bool>,
-	pub notes: Option<String>,
+	pub is_primary_defence: bool,
+	pub was_broken: bool,
+	pub was_disabled: bool,
+	pub notes: String,
+	pub last_modified_time: u64,
 }
 
 impl MatchInfo {
@@ -88,9 +107,7 @@ impl MatchInfo {
 		vec![
 			self.match_number.to_string(),
 			self.match_category.to_string(),
-			self.team
-				.map(|t| t.to_string())
-				.unwrap_or_else(|| "".to_string()),
+			self.team_number.to_string(),
 			self.auto.exited_tarmac.to_string(),
 			self.auto
 				.starting_location
@@ -116,16 +133,10 @@ impl MatchInfo {
 			self.defense
 				.map(|s| s.to_string())
 				.unwrap_or_else(|| "".to_string()),
-			self.is_primary_defence
-				.map(|s| s.to_string())
-				.unwrap_or_else(|| "".to_string()),
-			self.was_broken
-				.map(|s| s.to_string())
-				.unwrap_or_else(|| "".to_string()),
-			self.was_disabled
-				.map(|s| s.to_string())
-				.unwrap_or_else(|| "".to_string()),
-			self.notes.clone().unwrap_or_else(|| "".to_string()),
+			self.is_primary_defence.to_string(),
+			self.was_broken.to_string(),
+			self.was_disabled.to_string(),
+			self.notes.clone(),
 		]
 		.join(",") + "\n"
 	}

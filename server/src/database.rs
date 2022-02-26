@@ -1,4 +1,4 @@
-use crate::data::{MatchInfo, MatchType};
+use crate::data::MatchInfo;
 use std::array::TryFromSliceError;
 use std::path::Path;
 use thiserror::Error;
@@ -47,27 +47,23 @@ impl Database {
 	}
 	pub fn get_match_id(match_info: &MatchInfo) -> Vec<u8> {
 		Vec::from(format!(
-			"match_{}_{:?}",
-			match_info.match_number, match_info.match_category
+			"match_{}_{:?}_{}",
+			match_info.match_number, match_info.match_category, match_info.team_number,
 		))
 	}
 	pub fn write_match(&self, match_info: &MatchInfo) -> Result<(), DatabaseError> {
 		let id = Self::get_match_id(match_info);
+		if let Some(data) = self.backend.get(&id)? {
+			if let Ok(old_match_info) = bincode::deserialize::<MatchInfo>(&data) {
+				if old_match_info.last_modified_time >= match_info.last_modified_time {
+					// Don't replace newer things.
+					return Ok(());
+				}
+			}
+		}
 		let data = bincode::serialize(match_info)?;
 		self.backend.insert(id, data)?;
 		Ok(())
-	}
-	pub fn get_match(
-		&self,
-		match_number: u32,
-		match_category: MatchType,
-	) -> Result<Option<MatchInfo>, DatabaseError> {
-		let id = Vec::from(format!("match_{}_{:?}", match_number, match_category));
-		let data = self.backend.get(&id)?;
-		Ok(match data {
-			Some(data) => Some(bincode::deserialize(&data)?),
-			None => None,
-		})
 	}
 	pub fn get_all_matches(&self) -> MatchIter {
 		MatchIter::from_sled(self.backend.scan_prefix(b"match_"))
