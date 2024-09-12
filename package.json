@@ -10,7 +10,7 @@
   "author": "John Brandt",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.16.3",
+    "express": "^4.21.0",
     "moment": "^2.24.0",
     "nano": "^8.0.0",
     "node-cache": "^4.2.0",
